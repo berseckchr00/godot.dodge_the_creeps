@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://d4bbu6w6jbysr"]
+
+[ext_resource type="Texture2D" uid="uid://di6ju2hfrs1j0" path="res://art/playerGrey_up1.png" id="1_a3v7r"]
+[ext_resource type="Script" path="res://player.gd" id="1_evy2p"]
+[ext_resource type="Texture2D" uid="uid://dwpa00uwfmojl" path="res://art/playerGrey_up2.png" id="2_4cq63"]
+[ext_resource type="Texture2D" uid="uid://cqsb2xen3noj7" path="res://art/playerGrey_walk1.png" id="3_23of5"]
+[ext_resource type="Texture2D" uid="uid://cb66bx6smwapi" path="res://art/playerGrey_walk2.png" id="4_t48dm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71ron"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a3v7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4cq63")
+}],
+"loop": true,
+"name": &"arriba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_23of5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t48dm")
+}],
+"loop": true,
+"name": &"caminar",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ylcer"]
+radius = 27.0
+height = 68.0
+
+[sub_resource type="Curve" id="Curve_46arf"]
+_data = [Vector2(0, 0.578947), 0.0, 0.0, 0, 0, Vector2(0.509494, 0.378947), 0.0, 0.0, 0, 0, Vector2(0.990506, 0.315789), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u75jc"]
+curve = SubResource("Curve_46arf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0qu1q"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_u75jc")
+color = Color(1, 1, 1, 0.580392)
+
+[node name="Player" type="Area2D"]
+z_index = 10
+script = ExtResource("1_evy2p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_71ron")
+animation = &"caminar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ylcer")
+
+[node name="Trail" type="GPUParticles2D" parent="."]
+z_index = -1
+process_material = SubResource("ParticleProcessMaterial_0qu1q")
+texture = ExtResource("3_23of5")
+speed_scale = 2.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
