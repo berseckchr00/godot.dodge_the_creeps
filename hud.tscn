@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv8g1k58k3shn"]
+[gd_scene format=3 uid="uid://cv8g1k58k3shn"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_4xl5n"]
+[ext_resource type="Script" uid="uid://b5aukrtxdf4b8" path="res://hud.gd" id="1_4xl5n"]
 [ext_resource type="FontFile" uid="uid://c3beshauk7up5" path="res://fonts/Xolonium-Regular.ttf" id="1_8easa"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_u4mw2"]
@@ -9,10 +9,10 @@ action = &"start_game"
 [sub_resource type="Shortcut" id="Shortcut_kj4c3"]
 events = [SubResource("InputEventAction_u4mw2")]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=1381545329]
 script = ExtResource("1_4xl5n")
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="." unique_id=657458100]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 81.0
@@ -24,7 +24,7 @@ text = "0
 "
 horizontal_alignment = 1
 
-[node name="Message" type="Label" parent="."]
+[node name="Message" type="Label" parent="." unique_id=282064701]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -42,7 +42,7 @@ text = "Dodge the
 Creeps!"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="." unique_id=1139674869]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -59,7 +59,7 @@ theme_override_font_sizes/font_size = 64
 shortcut = SubResource("Shortcut_kj4c3")
 text = "Start"
 
-[node name="MessageTimer" type="Timer" parent="."]
+[node name="MessageTimer" type="Timer" parent="." unique_id=203150947]
 wait_time = 2.0
 one_shot = true
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://d4bbu6w6jbysr"]
+[gd_scene format=3 uid="uid://d4bbu6w6jbysr"]
 
 [ext_resource type="Texture2D" uid="uid://di6ju2hfrs1j0" path="res://art/playerGrey_up1.png" id="1_a3v7r"]
-[ext_resource type="Script" path="res://player.gd" id="1_evy2p"]
+[ext_resource type="Script" uid="uid://diulo6spu2lje" path="res://player.gd" id="1_evy2p"]
 [ext_resource type="Texture2D" uid="uid://dwpa00uwfmojl" path="res://art/playerGrey_up2.png" id="2_4cq63"]
 [ext_resource type="Texture2D" uid="uid://cqsb2xen3noj7" path="res://art/playerGrey_walk1.png" id="3_23of5"]
 [ext_resource type="Texture2D" uid="uid://cb66bx6smwapi" path="res://art/playerGrey_walk2.png" id="4_t48dm"]
@@ -15,7 +15,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_4cq63")
 }],
-"loop": true,
+"loop": 1,
 "name": &"arriba",
 "speed": 5.0
 }, {
@@ -26,7 +26,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_t48dm")
 }],
-"loop": true,
+"loop": 1,
 "name": &"caminar",
 "speed": 5.0
 }]
@@ -47,22 +47,22 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_u75jc")
 color = Color(1, 1, 1, 0.580392)
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" unique_id=877772007]
 z_index = 10
 script = ExtResource("1_evy2p")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1948829761]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_71ron")
 animation = &"caminar"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=878506719]
 shape = SubResource("CapsuleShape2D_ylcer")
 
-[node name="Trail" type="GPUParticles2D" parent="."]
+[node name="Trail" type="GPUParticles2D" parent="." unique_id=1189306098]
 z_index = -1
-process_material = SubResource("ParticleProcessMaterial_0qu1q")
 texture = ExtResource("3_23of5")
 speed_scale = 2.0
+process_material = SubResource("ParticleProcessMaterial_0qu1q")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

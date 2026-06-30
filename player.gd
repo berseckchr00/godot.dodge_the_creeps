@@ -40,9 +40,15 @@ func _process(delta):
 		rotation = PI if velocity.y > 0 else 0
 
 func _on_body_entered(body):
-	hide()
+	explode()
 	hit.emit()
 	$CollisionShape2D.set_deferred(&"disabled", true)
+	
+func explode():
+	var debris_scene = preload("res://player_debris.tscn").instantiate()
+	get_parent().add_child(debris_scene)
+	debris_scene.position = position
+	hide()
 	
 func start(pos):
 	position = pos

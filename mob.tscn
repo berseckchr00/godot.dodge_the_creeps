@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cscldqrfigkg8"]
+[gd_scene format=3 uid="uid://cscldqrfigkg8"]
 
 [ext_resource type="Texture2D" uid="uid://45l37dhsgpv7" path="res://art/enemyFlyingAlt_1.png" id="1_12gg6"]
-[ext_resource type="Script" path="res://mob.gd" id="1_g2lmu"]
+[ext_resource type="Script" uid="uid://phhbdqumbdi5" path="res://mob.gd" id="1_g2lmu"]
 [ext_resource type="Texture2D" uid="uid://bskgyofbqsqyo" path="res://art/enemyFlyingAlt_2.png" id="2_64ihq"]
 [ext_resource type="Texture2D" uid="uid://3wxrp3j3jpb6" path="res://art/enemySwimming_1.png" id="3_rhpdn"]
 [ext_resource type="Texture2D" uid="uid://blp77b3rum3bo" path="res://art/enemySwimming_2.png" id="4_01i62"]
@@ -17,7 +17,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_64ihq")
 }],
-"loop": true,
+"loop": 1,
 "name": &"fly",
 "speed": 5.0
 }, {
@@ -28,7 +28,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_01i62")
 }],
-"loop": true,
+"loop": 1,
 "name": &"swim",
 "speed": 5.0
 }, {
@@ -39,7 +39,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_055l8")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 3.0
 }]
@@ -48,22 +48,22 @@ animations = [{
 radius = 50.0
 height = 100.0
 
-[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+[node name="Mob" type="RigidBody2D" unique_id=1673772702 groups=["mobs"]]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_g2lmu")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1808695008]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_gtavi")
 animation = &"swim"
 frame = 1
 frame_progress = 0.113982
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=664149830]
 shape = SubResource("CapsuleShape2D_jmauy")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=695287113]
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
