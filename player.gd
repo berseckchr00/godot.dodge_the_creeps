@@ -2,7 +2,7 @@ extends Area2D
 signal hit
 @export var speed = 400
 var screen_size
-
+var debris_scene = preload("res://player_debris.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size= get_viewport_rect().size
@@ -40,16 +40,20 @@ func _process(delta):
 		rotation = PI if velocity.y > 0 else 0
 
 func _on_body_entered(body):
-	explode()
-	hit.emit()
-	$CollisionShape2D.set_deferred(&"disabled", true)
+	if body.is_in_group("mobs"):
+		explode()
+		hit.emit()
+		$CollisionShape2D.set_deferred(&"disabled", true)
+	else:
+		print("esto no fue un enemigo uf!!")
 	
 func explode():
-	var debris_scene = preload("res://player_debris.tscn").instantiate()
-	get_parent().add_child(debris_scene)
-	debris_scene.position = position
+	var debris = debris_scene.instantiate()
+	get_parent().add_child(debris)
+	debris.position = position
 	hide()
 	$CollisionShape2D.set_deferred(&"disabled", true)
+	hit.emit()
 	
 func start(pos):
 	position = pos
