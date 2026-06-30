@@ -49,6 +49,7 @@ func explode():
 	get_parent().add_child(debris_scene)
 	debris_scene.position = position
 	hide()
+	$CollisionShape2D.set_deferred(&"disabled", true)
 	
 func start(pos):
 	position = pos
